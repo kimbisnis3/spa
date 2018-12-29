@@ -1,0 +1,427 @@
+.fixed.launch.button {
+    /*display: none !important;*/
+    position: fixed;
+    z-index: 50;
+    top: 0.5em;
+    left: 0px;
+    width: 30px;
+    height: auto;
+    white-space: nowrap;
+    overflow: hidden;
+
+  -webkit-transition:
+    0.3s width ease,
+    0.5s transform ease;
+  -moz-transition:
+    0.3s width ease,
+    0.5s transform ease;
+  -o-transition:
+    0.3s width ease,
+    0.5s transform ease;
+  -ms-transition:
+    0.3s width ease,
+    0.5s transform ease;
+  transition:
+    0.3s width ease,
+    0.5s transform ease;
+}
+ .launch.button .icon {
+    margin-left: 0px;
+}
+
+/* Position Change */
+.pushable.left.overlay .fixed.launch.button {
+    transform: translate3d(0, 0, 0);
+}
+.pushable.overlay.left.pushed .fixed.launch.button {
+    transform: translate3d(260px, 0, 0);
+}
+.cs-login-icon {
+    margin-left: 12px !important;
+    position: absolute;
+    margin-top: 12px !important;
+}
+
+.cs-margin-top-login {
+    margin-top: 5%;
+}
+
+.ui.sidebar.left.vertical.menu {
+    margin: 0rem 0rem 0rem 0rem !important;
+    border-radius:.2857rem !important;
+    z-index: 70;
+}
+
+.pointer {
+    cursor: pointer !important;
+    user-select: none;
+}
+
+.bold {
+    font-weight: bold !important;
+}
+
+.ng-cloak {
+    display: none !important;
+}
+
+.menu.active {
+    background: #3c3c3c;
+    border: 1px solid #fff;
+    border-radius: 15px;
+}
+
+.route.ng-leave {
+    -webkit-animation:routeFadeOut .2s both ease-out;
+    -moz-animation:routeFadeOut .2s both ease-out;
+    animation:routeFadeOut .2s ease-out
+}
+
+.route.ng-enter{
+    -webkit-animation:routeFadeIn .4s both ease-out;
+    -moz-animation:routeFadeIn .4s both ease-out;
+    animation:routeFadeIn .4s ease-out
+}
+
+.ng-hide, .ng-hide-add {
+    animation-name: routeFadeOut;
+    animation-duration: .3s;
+}
+
+.ng-hide-remove {
+    height: 0px !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+    padding-bottom: 0px !important;
+    visibility: hidden;
+    animation-delay: .3s;
+    animation-duration: .3s;
+    animation-name: routeFadeIn;
+}
+
+body::-webkit-scrollbar {
+  width: 5px;
+  background: rgba(0, 0, 0, 0);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #969696;
+  border-radius: 20px;
+}
+
+body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+  border-radius: 20px;
+}
+
+
+@keyframes routeFadeIn {
+    0% {
+        height: unset;
+        padding-top: unset;
+        padding-bottom: unset;
+        margin-top: unset;
+        margin-bottom: unset;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    to {
+        height: unset;
+        padding-top: unset;
+        padding-bottom: unset;
+        margin-top: unset;
+        margin-bottom: unset;
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes routeFadeOut {
+    0% {
+        opacity: 1
+    }
+
+    to {
+        opacity: 0
+    }
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+.btn-input {
+    margin-top: 1.9rem !important;
+}
+
+.context-menu {
+    position: fixed;
+}
+
+.close {
+    float: right !important;
+    padding-right: 2%;
+    color: red;
+}
+
+.noselect {
+    user-select: none;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.float-left {
+    float: left !important;
+}
+
+.padding {
+    padding: 2rem !important;
+}
+
+.padding-top {
+    padding-top: 2rem !important;
+}
+
+.padding-right {
+    padding-right: 2rem !important;
+}
+
+.padding-bottom {
+    padding-bottom: 2rem !important;
+}
+
+.padding-left {
+    padding-left: 2rem !important;
+}
+
+.padding-horizontal {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+}
+
+.padding-vertical {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+}
+
+.nopadding-horizontal-all {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+@media only screen and (min-width:768px) {
+    .main.container {
+        background-color: #FFFFFF;
+        margin: 1em auto;
+        width: 98% !important;
+        box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.05);
+        border-left: 1px solid #DDDDDD;
+        border-right: 1px solid #DDDDDD;
+        border-bottom: 1px solid #DDDDDD;
+        padding: 0em 0.5em 1em;
+        z-index: 1
+    }
+
+    .nopadding-horizontal-large {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+}
+
+
+@media only screen and (max-width:767px) {
+    .main.container {
+        background-color: #FFFFFF;
+        margin: 1em 1% !important;
+        width: 98% !important;
+        box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.05);
+        border-left: 1px solid #DDDDDD;
+        border-right: 1px solid #DDDDDD;
+        border-bottom: 1px solid #DDDDDD;
+        padding: 0em 0.5em 1em;
+        z-index: 1
+    }
+
+    .block {
+        width: 100% !important;
+    }
+
+    .nopadding {
+        padding: 0px !important;
+    }
+
+    .nopadding-top {
+        padding-top: 0px !important;
+    }
+
+    .nopadding-right {
+        padding-right: 0px !important;
+    }
+
+    .nopadding-bottom {
+        padding-bottom: 0px !important;
+    }
+
+    .nopadding-left {
+        padding-left: 0px !important;
+    }
+
+    .nopadding-horizontal {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+
+    .nopadding-vertical {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+}
+
+.show {
+    -webkit-transition: -webkit-transform .5s ease;
+    transition: -webkit-transform .5s ease;
+    transition: transform .5s ease;
+    transition: transform .5s ease,-webkit-transform .5s ease;
+}
+
+.optionclear .remove.icon {
+  font-size: 0.857143em;
+  float: left;
+  margin: 0;
+  padding: 0;
+  left: -0.5em;
+  top: 0;
+  position: relative;
+  opacity: 0.5;
+  z-index: 3;
+  color: red;
+  font-size: 0.7rem;
+}
+
+.optionclear select div[value='']  ~ .remove.icon
+{
+   opacity: 0.0;
+}
+
+.ui.checkbox {
+    padding-top: 2.2rem !important;
+}
+
+
+.child {
+    padding-left: 2em;
+}
+
+.tred {
+    color: #db2828 !important;
+}
+
+.torange {
+    color: #f2711c !important;
+}
+
+.tyellow {
+    color: #fbbd08 !important;
+}
+
+.tolive {
+    color: #b5cc18 !important;
+}
+
+.tgreen {
+    color: #21ba45 !important;
+}
+
+.tteal {
+    color: #00b5ad !important;
+}
+
+.tblue {
+    color: #2185d0 !important;
+}
+
+.tviolet {
+    color: #6435c9 !important;
+}
+
+.tpurple {
+    color: #a333c8 !important;
+}
+
+.tpink {
+    color: #e03997 !important;
+}
+
+.tbrown {
+    color: #a5673f !important;
+}
+
+.tgrey {
+    color: #767676 !important;
+}
+
+.tblack {
+    color: #1b1c1d !important;
+}
+
+.inputfield {
+    font-family: 'Poppins';
+    margin: 0;
+    outline: 0;
+    -webkit-appearance: none;
+    tap-highlight-color: rgba(255,255,255,0);
+    line-height: 1.21428571em;
+    padding: .67857143em 1em;
+    font-size: 1em;
+    background: #fff;
+    border: 1px solid rgba(34,36,38,.15);
+    color: rgba(0,0,0,.87);
+    border-radius: .28571429rem;
+    -webkit-box-shadow: 0 0 0 0 transparent inset;
+    box-shadow: 0 0 0 0 transparent inset;
+    -webkit-transition: color .1s ease,border-color .1s ease;
+    transition: color .1s ease,border-color .1s ease;
+}
+
+.transparent {
+    background: transparent !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.likeTable ul {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+.likeTable ul .dndDraggingSource {
+    display: none;
+}
+
+.likeTable ul .dndPlaceholder, .dndPlaceholder {
+    background-color: #ddd;
+    display: block;
+    min-height: 42px;
+}
+
+.likeTable ul li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
+.likeTable ul li.selected, li.selected {
+    background-color: #f7f7f7;
+    color: #000000;
+}
