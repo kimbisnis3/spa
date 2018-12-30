@@ -47,20 +47,35 @@
          $http({
                  method: 'POST',
                  url: u,
-                 data: d
+                 data: JSON.stringify(d)
              })
              .then(function(res) {
                  let response = res.data;
              }, function(err) {
                  switch (err.status) {
                      case (500):
-                         notif('Gagal', 'Error', 'danger');
+                         console.log('gagal');
+                         console.log(d);
                          break;
                      case (401):
-                         notif('Gagal', 'Error', 'danger');
+                         console.log('gagal');
                          break;
                  }
              })
+     }
+     this.posta = function(u, d, r = function() {}) {
+         $.ajax({
+             url: u,
+             type: "POST",
+             data: {
+                 json: JSON.stringify(d),
+             },
+             dataType: "JSON",
+             success: function(data) {},
+             error: function(jqXHR, textStatus, errorThrown) {
+                 // alert('Error on process');
+             }
+         });
      }
  });
 
@@ -86,20 +101,34 @@
          });
      };
 
-     $scope.add_data = function(idmodal, idform) {
+     $scope.open_modal = function(idmodal, idform, title) {
          $('#' + idform)[0].reset();
          $('#' + idmodal).modal('show');
-         $('.modal-title').text('Tambahkan Data');
-         // universe.notif('Sukses', 'Data Berhasil Ditambahkan', 'success');
+         $('.modal-title').text(title);
+         // universe.notif('Init', 'Modal Open', 'success');
      };
+
+     $scope.close_modal = function(idmodal, idform) {
+         $('#' + idform)[0].reset();
+         $('#' + idmodal).modal('hide');
+         $('.modal-title').text('Tambahkan Data');
+         // universe.notif('Init', 'Modal Open', 'success');
+     };
+
+     $scope.hapus_data = function(id) {
+         console.log('oke');
+
+     }
 
 
 
 
  });
 
- scotchApp.controller('aboutController', function($scope, $rootScope, $ocLazyLoad, universe) {
+ scotchApp.controller('aboutController', function($scope, $rootScope, $ocLazyLoad, universe, $timeout) {
      $scope.judul = 'Artikel';
+     $scope.input = {};
+
      $scope.column = [{
          "data": "judul",
          "field": "Judul",
@@ -117,19 +146,69 @@
 
      $scope.dtb('table', 'api/artikel/setview', {}, $scope.column);
 
-     $scope.simpan = function(){
-     universe.post('api/artikel/tambah/', $scope.input, function(res) {
-         if (res.status == 'success') {
-             $scope.input = {};
-             console.log("sukses");
-         } else {
-             console.log("gagal");
-         }
-     })
+     $scope.simpan = function() {
+         $.ajax({
+             url: 'api/artikel/tambah',
+             type: "POST",
+             data: {
+                 json: JSON.stringify($scope.input),
+             },
+             dataType: "JSON",
+             success: function(data) {
+                 $scope.close_modal('modal-input', 'form-input');
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
 
-     console.log('okeee');
-     	
+             }
+         });
+
      }
+
+     $scope.simpan = function() {
+         $.ajax({
+             url: 'api/artikel/tambah',
+             type: "POST",
+             data: {
+                 json: JSON.stringify($scope.input),
+             },
+             dataType: "JSON",
+             success: function(data) {
+                 $scope.close_modal('modal-input', 'form-input');
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+
+             }
+         });
+
+     }
+
+     $scope.input_modal = function() {
+         $scope.open_modal('modal-input', 'form-input', 'Tambahkan Data');
+         $scope.btntambah = true;
+     }
+
+     $(document).on("click", ".edit_data", function() {
+         $scope.btnubah = true;
+         let id = $(this).attr('id');
+         $.ajax({
+             url: 'api/artikel/edit',
+             type: "POST",
+             data: {
+                 id: id,
+             },
+             dataType: "JSON",
+             success: function(data) {
+                 $timeout(function() {
+                     $scope.input = data;
+                 }, 10);
+                 $scope.open_modal('modal-input', 'form-input', 'Edit Data');
+
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+                 alert('Error on process');
+             }
+         });
+     });
 
 
  });

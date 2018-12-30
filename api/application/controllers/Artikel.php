@@ -25,21 +25,23 @@ class Artikel extends CI_Controller {
 
     public function tambah()
     {
-        $data = array(
-                'judul'     => ien($this->universe->post('judul')),
-                'artikel'   => ien($this->universe->post('artikel')),
-                'ket'       => ien($this->universe->post('ket')),
-            );
+        $dp = json_decode($this->input->post('json'));
+        $data['judul']      = $dp->judul;
+        $data['artikel']    = $dp->artikel;
+        $data['ket']        = $dp->ket;
+
         $insert = $this->Unimodel->save($this->table,$data);
         if ($insert > 0) {
             echo json_encode(
             array(
+                "status" => "success",
                 "message" => "sukses",
                 "affected"=> $insert
             ));
         } else {
             echo json_encode(
             array(
+                "status" => "failed",
                 "message" => "gagal",
                 "affected"=> $insert
             ));
