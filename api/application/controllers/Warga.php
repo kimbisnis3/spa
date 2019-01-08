@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Warga extends CI_Controller {
     
-    public $table       = 'm_warga';
+    public $table       = 'm_wrg';
     public $foldername  = 'warga';
 
     function __construct() {
@@ -20,6 +20,11 @@ class Warga extends CI_Controller {
         $this->datatables->from($this->table);
         $this->datatables->add_column('option', btnud("$1"), 'wrg_id');
         return print_r($this->datatables->generate());
+    }
+
+    function gettarif(){
+        $data = $this->Unimodel->getdata('m_tarif');
+        echo json_encode($data);
     }
 
     public function tambah()

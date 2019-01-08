@@ -17,12 +17,12 @@
      .when('/contact', {
          templateUrl: 'views/contact/contact.html',
          controller: 'contactController'
-     });
+     })
 
      .when('/warga', {
          templateUrl: 'views/warga/warga.html',
          controller: 'warga'
-     });
+     })
  });
 
 
@@ -99,6 +99,10 @@
                  "type": "POST",
                  "data": data
              },
+             fixedHeader: {
+                header: true,
+                footer: true
+            },
              "columns": col,
              "initComplete": function(settings, json) {
                  console.log('Finish.');
@@ -241,11 +245,11 @@
      $scope.input = {};
 
      $scope.column = [{
-         "data": "wrg_kode",
-         "field": "wrg_kode",
-     }, {
          "data": "wrg_nama",
-         "field": "wrg_nama"
+         "field": "wrg_nama",
+     }, {
+         "data": "wrg_kode",
+         "field": "wrg_kode"
      }, {
          "data": "wrg_alamat",
          "field": "wrg_alamat"
@@ -263,22 +267,22 @@
 
      $scope.dtb('table', 'api/warga/setview', {}, $scope.column);
 
-     $scope.simpan = function() {
-         $.ajax({
-             url: 'api/warga/tambah',
-             type: "POST",
-             data: {
-                 json: JSON.stringify($scope.input),
-             },
+     $scope.btntarif = function(id){
+        console.log(id);
+     }
+
+     $scope.gettarif = function(){
+        $.ajax({
+             url: 'api/warga/gettarif',
+             type: "GET",
              dataType: "JSON",
              success: function(data) {
-                 $scope.close_modal('modal-input', 'form-input');
+                 $scope.btntarif = data;
              },
              error: function(jqXHR, textStatus, errorThrown) {
 
              }
          });
-
      }
 
      $scope.simpan = function() {
@@ -320,6 +324,18 @@
      $scope.input_modal = function() {
          $scope.open_modal('modal-input', 'form-input', 'Tambahkan Data');
          $scope.btntambah = true;
+         $.ajax({
+             url: 'api/warga/gettarif',
+             type: "GET",
+             dataType: "JSON",
+             success: function(data) {
+                 $scope.btntarif = data;
+                 console.log($scope.btntarif);
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+
+             }
+         });
      }
 
      $(document).on("click", ".edit_data", function() {
