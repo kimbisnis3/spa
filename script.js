@@ -18,6 +18,11 @@
          templateUrl: 'views/contact/contact.html',
          controller: 'contactController'
      });
+
+     .when('/warga', {
+         templateUrl: 'views/warga/warga.html',
+         controller: 'warga'
+     });
  });
 
 
@@ -182,6 +187,24 @@
 
      }
 
+     $scope.update = function() {
+         $.ajax({
+             url: 'api/artikel/tambah',
+             type: "POST",
+             data: {
+                 json: JSON.stringify($scope.input),
+             },
+             dataType: "JSON",
+             success: function(data) {
+                 $scope.close_modal('modal-input', 'form-input');
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+
+             }
+         });
+
+     }
+
      $scope.input_modal = function() {
          $scope.open_modal('modal-input', 'form-input', 'Tambahkan Data');
          $scope.btntambah = true;
@@ -192,6 +215,118 @@
          let id = $(this).attr('id');
          $.ajax({
              url: 'api/artikel/edit',
+             type: "POST",
+             data: {
+                 id: id,
+             },
+             dataType: "JSON",
+             success: function(data) {
+                 $timeout(function() {
+                     $scope.input = data;
+                 }, 10);
+                 $scope.open_modal('modal-input', 'form-input', 'Edit Data');
+
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+                 alert('Error on process');
+             }
+         });
+     });
+
+
+ });
+
+ scotchApp.controller('warga', function($scope, $rootScope, $ocLazyLoad, universe, $timeout) {
+     $scope.judul = 'Warga';
+     $scope.input = {};
+
+     $scope.column = [{
+         "data": "wrg_kode",
+         "field": "wrg_kode",
+     }, {
+         "data": "wrg_nama",
+         "field": "wrg_nama"
+     }, {
+         "data": "wrg_alamat",
+         "field": "wrg_alamat"
+     },{
+         "data": "wrg_tarif_id",
+         "field": "wrg_tarif_id"
+     },{
+         "data": "wrg_ket",
+         "field": "wrg_ket"
+     }, {
+         "data": "option",
+         "field": "Opsi"
+     }];
+
+
+     $scope.dtb('table', 'api/warga/setview', {}, $scope.column);
+
+     $scope.simpan = function() {
+         $.ajax({
+             url: 'api/warga/tambah',
+             type: "POST",
+             data: {
+                 json: JSON.stringify($scope.input),
+             },
+             dataType: "JSON",
+             success: function(data) {
+                 $scope.close_modal('modal-input', 'form-input');
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+
+             }
+         });
+
+     }
+
+     $scope.simpan = function() {
+         $.ajax({
+             url: 'api/warga/tambah',
+             type: "POST",
+             data: {
+                 json: JSON.stringify($scope.input),
+             },
+             dataType: "JSON",
+             success: function(data) {
+                 $scope.close_modal('modal-input', 'form-input');
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+
+             }
+         });
+
+     }
+
+     $scope.update = function() {
+         $.ajax({
+             url: 'api/warga/update',
+             type: "POST",
+             data: {
+                 json: JSON.stringify($scope.input),
+             },
+             dataType: "JSON",
+             success: function(data) {
+                 $scope.close_modal('modal-input', 'form-input');
+             },
+             error: function(jqXHR, textStatus, errorThrown) {
+
+             }
+         });
+
+     }
+
+     $scope.input_modal = function() {
+         $scope.open_modal('modal-input', 'form-input', 'Tambahkan Data');
+         $scope.btntambah = true;
+     }
+
+     $(document).on("click", ".edit_data", function() {
+         $scope.btnubah = true;
+         let id = $(this).attr('id');
+         $.ajax({
+             url: 'api/warga/edit',
              type: "POST",
              data: {
                  id: id,
